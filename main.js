@@ -16,6 +16,18 @@ app.post("/add", (request, response) => {
     }
     response.json(words[number]);
 });
+//問題を編集する
+app.post("/edit", (request, response) => {
+    const number1 = request.body.pageNumber;
+    const number2 = request.body.questionNumber;
+    if(request.body.question && request.body.answer){
+        const newQuestion = request.body.question;
+        const newAnswer = request.body.answer;
+        words[number1][0][number2]=newQuestion;
+        words[number1][1][number2]=newAnswer;
+    }
+    response.json(words[number1]);
+});
 //単語帳の数を返す
 app.post("/getLength", (request, response) => {
     const lengthList = new Array(0);

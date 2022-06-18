@@ -10,7 +10,7 @@ function Quiz(props){
     //初期状態に戻す
     async function set(){
         const body = new URLSearchParams({ number: pageNumber});
-        const response1 = await fetch(props.link, {method: "post", body:body});
+        const response1 = await fetch("/add", {method: "post", body:body});
         const json1 = await response1.text();
         const wordList = JSON.parse(json1);
         setQuestions(wordList[0]);
@@ -18,6 +18,7 @@ function Quiz(props){
         setLookAnswer(false);
         setNumber(0);
         setButton(false);
+        setEditQuestion(wordList[0][number]);
     }
     const [questions, setQuestions] = useState([]);
     const [answers, setAnswers] = useState([]);
@@ -27,21 +28,41 @@ function Quiz(props){
     const [number, setNumber] = useState(0);
     const [lookAnswer, setLookAnswer] = useState(false);
     const [onclick, setButton] = useState(false);
+    const [onclick2, setButton2] = useState(false);
     const [questionText, setQuestion] = useState("");
     const [answerText, setAnswer] = useState("");
+    const [editQuestion, setEditQuestion] = useState("");
+    const [editAnswer, setEditAnswer] = useState("");
     const question = questions[number];
     const answer = answers[number];
     //問題を追加する
     async function add(){
         if(!(questionText==="" || answerText==="")){
             const body = new URLSearchParams({ question: questionText, answer: answerText, number: pageNumber});
-            const response = await fetch(props.link, { method: "post", body: body });
+            const response = await fetch("/add", { method: "post", body: body });
             const json = await response.text();
             const word = JSON.parse(json);
             setQuestions(word[0]);
             setAnswers(word[1]);
             setQuestion("");
             setAnswer("");
+            setEditQuestion(word[0][number]);
+            setEditAnswer(word[1][number]);
+        }
+    }
+    //編集する
+    async function edit(){
+        if(!(editQuestion==="" || editAnswer==="")){
+            const body = new URLSearchParams({ question: editQuestion, answer: editAnswer, pageNumber: pageNumber, questionNumber: number});
+            const response = await fetch("/edit", { method: "post", body: body });
+            const json = await response.text();
+            const word = JSON.parse(json);
+            setQuestions(word[0]);
+            setAnswers(word[1]);
+            setQuestion("");
+            setAnswer("");
+            setEditQuestion(word[0][number]);
+            setEditAnswer(word[1][number]);
         }
     }
     //戻る
@@ -52,15 +73,24 @@ function Quiz(props){
         if(lookAnswer===true){
             setLookAnswer(!lookAnswer)
         }
+        setEditQuestion(questions[number-1]);
+        setEditAnswer(answers[number-1]);
     }
     //次へ進む
     function next(){
         if(lookAnswer===true){
             if(questions[number+1]){
                 setNumber(number+1);
+                setEditQuestion(questions[number+1]);
+                setEditAnswer(answers[number+1]);
+            }else{
+                setEditQuestion(questions[number]);
+                setEditAnswer(answers[number]);
             }
             setLookAnswer(!lookAnswer);
         }else{
+            setEditQuestion(questions[number]);
+            setEditAnswer(answers[number]);
             setLookAnswer(!lookAnswer);
         }
     }
@@ -87,6 +117,18 @@ function Quiz(props){
                         setAnswer(e.target.value)
                     }}></textarea>
                     <button onClick={() => add()}>追加</button>
+                </div>
+            </div>
+            <button onClick={() => setButton2(!onclick2)}>問題を編集する</button>
+            <div className={onclick2 ? "block" : "none"} id="edit">
+                <div id="editField">
+                    問題<textarea id="editQuestion" value={editQuestion} onChange={(e) => {
+                        setEditQuestion(e.target.value)
+                    }}></textarea>
+                    答え<textarea id="editAnswer" value={editAnswer} onChange={(e) => {
+                        setEditAnswer(e.target.value)
+                    }}></textarea>
+                    <button onClick={() => edit()}>決定</button>
                 </div>
             </div>
         </div>
