@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './quiz.css';
 
 //問題と答えを表示する部分
 function Quiz(props){

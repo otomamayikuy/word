@@ -36,3 +36,150 @@
     transform: rotate(360deg);
   }
 }
+header{
+  height:100px;
+  width:100%;
+  
+}
+.none{
+  display:none;
+}
+.block{
+  display:block;
+}
+#title{
+  position:relative;
+  height:60px;
+  width:100%;
+  top:0px;
+  left:0px;
+  background-color: aqua;
+}
+#menubutton{
+  position:absolute;
+  height:30px;
+  width:80px;
+  top:30px;
+  left:10px;
+}
+#title_text{
+  position:absolute;
+  top:0px;
+  left:50%;
+  transform: translateX(-50%);
+  font-size: 40px;
+}
+
+#header_links{
+  position:absolute;
+  top:50px;
+  left:0px;
+  font-size: 20px;
+}
+#home_links{
+  position:absolute;
+  width:100%;
+  top:80px;
+  left:0px;
+}
+#home_links div{
+  position:relative;
+  left:50%;
+  transform: translateX(-50%);
+  font-size: 30px;
+  text-align: center;
+}
+#home_links button{
+  position:relative;
+  left:50%;
+  transform: translateX(-50%);
+}
+.main{
+  position: relative;
+  margin: 50px;
+  width:80%;
+  left:10%;
+  background-color: rgb(240, 255, 255);
+}
+.title{
+  position:relative;
+  height:50px;
+  width:100%;
+}
+.body{
+  position:relative;
+  height:320px;
+  width:100%;
+}
+#questionAnswer{
+  position: relative;
+  height:300px;
+  width:80%;
+  left:10%;
+  background-color: rgb(225, 255, 255);
+}
+#question{
+  border:solid 5px black;
+  position: absolute;
+  height:80%;
+  width:40%;
+  top:10%;
+  left:10%;
+  background-color: rgb(200, 255, 255);
+  transform:translate(-10px, -10px);
+}
+#answer{
+  border:solid 5px black;
+  position:absolute;
+  height:80%;
+  width:40%;
+  top:10%;
+  left:50%;
+  background-color: rgb(200, 255, 255);
+  transform:translate(-10px, -10px);
+}
+#questionButton{
+  position:absolute;
+  height:30px;
+  width:100px;
+  top:100%;
+  left:100%;
+  transform:translate(-100%,-100%);
+}
+#backButton{
+  position:absolute;
+  height:30px;
+  width:100px;
+  top:100%;
+  transform:translate(0,-100%);
+}
+#answerText{
+  overflow-wrap: normal;
+  position:absolute;
+  height:80%;
+  width:80%;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+#questionBox{
+  overflow-wrap: normal;
+  position:relative;
+  height:60px;
+  width:200px;
+}  
+#answerBox{
+  overflow-wrap: normal;
+  position:relative;
+  height:60px;
+  width:200px;
+}
+#add{
+  position:relative;
+  width:100%;
+}
+#addfield{
+  position:relative;
+  left:50%;
+  transform: translateX(-50%);
+}

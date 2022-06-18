@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './home.css';
 
 //ホーム画面
 function Home(props){
