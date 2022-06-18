@@ -93,6 +93,18 @@ function Quiz(props){
             setLookAnswer(!lookAnswer);
         }
     }
+    function changeButton(){
+        setButton(!onclick)
+        if(onclick2){
+            setButton2(!onclick2)
+        }
+    }
+    function changeButton2(){
+        setButton2(!onclick2)
+        if(onclick){
+            setButton(!onclick)
+        }
+    }
     return(
         <div className="main">
             <div className="title">
@@ -106,7 +118,7 @@ function Quiz(props){
                     <button onClick={() => next()} id="questionButton">{lookAnswer ? "次へ" : "答えを見る"}</button>
                 </div>
             </div>
-            <button onClick={() => setButton(!onclick)}>問題を追加する</button>
+            <button onClick={() => changeButton()}>問題を追加する</button><br />
             <div className={onclick ? "block" : "none"} id="add">
                 <div id="addField">
                     問題<textarea id="questionBox" value={questionText} onChange={(e) => {
@@ -118,7 +130,7 @@ function Quiz(props){
                     <button onClick={() => add()}>追加</button>
                 </div>
             </div>
-            <button onClick={() => setButton2(!onclick2)}>問題を編集する</button>
+            <button onClick={() => changeButton2()}>問題を編集する</button>
             <div className={onclick2 ? "block" : "none"} id="edit">
                 <div id="editField">
                     問題<textarea id="editQuestion" value={editQuestion} onChange={(e) => {
