@@ -1,0 +1,18 @@
+#home_links{
+    position:absolute;
+    width:100%;
+    top:80px;
+    left:0px;
+}
+#home_links div{
+    position:relative;
+    left:50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+    text-align: center;
+}
+#home_links button{
+    position:relative;
+    left:50%;
+    transform: translateX(-50%);
+}
